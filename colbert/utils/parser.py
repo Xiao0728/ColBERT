@@ -26,6 +26,8 @@ class Arguments():
         self.add_argument('--dim', dest='dim', default=128, type=int)
         self.add_argument('--query_maxlen', dest='query_maxlen', default=32, type=int)
         self.add_argument('--doc_maxlen', dest='doc_maxlen', default=180, type=int)
+        
+        self.add_argument('--in_batch_training', dest = 'in_batch_training',  default=False, action='store_true')
 
         # Filtering-related Arguments
         self.add_argument('--mask-punctuation', dest='mask_punctuation', default=False, action='store_true')
@@ -35,12 +37,16 @@ class Arguments():
         self.add_argument('--resume', dest='resume', default=False, action='store_true')
         self.add_argument('--resume_optimizer', dest='resume_optimizer', default=False, action='store_true')
         self.add_argument('--checkpoint', dest='checkpoint', default=None, required=False)
+        self.add_argument('--checkpoint_teacher', dest='checkpoint_teacher', default=None, required=False)
+        self.add_argument('--checkpoint_student', dest='checkpoint_student', default=None, required=False)
 
         self.add_argument('--lr', dest='lr', default=3e-06, type=float)
         self.add_argument('--maxsteps', dest='maxsteps', default=400000, type=int)
         self.add_argument('--bsize', dest='bsize', default=32, type=int)
         self.add_argument('--accum', dest='accumsteps', default=2, type=int)
         self.add_argument('--amp', dest='amp', default=False, action='store_true')
+        self.add_argument('--prfBatcher', dest='prfBatcher', default=False,action='store_true')
+        self.add_argument('--num_prf', dest='num_prf', default = 3, type=int)
 
     def add_model_inference_parameters(self):
         self.add_argument('--checkpoint', dest='checkpoint', required=True)
